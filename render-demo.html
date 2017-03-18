@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<myinput :value="myvalue"></myinput>
+			
+			<input v-model="myvalue" />
+		</div>
+		
+		<script src="js/vue.min.js"></script>
+		<script>
+			new Vue({
+				el:"#app",
+				data:{
+					myvalue:"123"
+				},
+				components:{
+					myinput:{
+						props:["value"],
+						render:function(createElement,content){
+							var _this=this;
+
+							var input=createElement("input",{
+								attrs:{
+									id:"123",
+									class:"myclass",
+									value:_this.value
+								},
+								on:{
+									input:function(e){
+										_this.value=e.target.value;
+										
+									}
+								}
+							});
+							
+							var span=createElement("span",_this.value);
+							return createElement("div",[input,"  输出值：",span])
+						}
+					}
+					
+				}
+				
+					
+					
+					
+					
+			})
+		</script>
+	</body>
+</html>
